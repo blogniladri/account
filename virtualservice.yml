@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: account-virtualservice
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - bookinfo-gateway                      # 1
+  http:
+  - match:
+    - uri:
+        prefix: /api/accounts
+    route:
+    - destination:
+        host: account
+        port:
+          number: 9001
